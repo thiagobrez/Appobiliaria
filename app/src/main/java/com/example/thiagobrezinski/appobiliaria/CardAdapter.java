@@ -35,10 +35,10 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
             super(view);
             nome = (TextView) view.findViewById(R.id.card_nome);
             valor = (TextView) view.findViewById(R.id.card_valor);
-            endereco = (TextView) view.findViewById(R.id.card_endereco);
-            numeroQuartos = (TextView) view.findViewById(R.id.card_numero_quartos);
-            dataEntrega = (TextView) view.findViewById(R.id.card_data_entrega);
-            prazoFinanciamento = (TextView) view.findViewById(R.id.card_prazo_financiamento);
+//            endereco = (TextView) view.findViewById(R.id.card_endereco);
+//            numeroQuartos = (TextView) view.findViewById(R.id.card_numero_quartos);
+//            dataEntrega = (TextView) view.findViewById(R.id.card_data_entrega);
+//            prazoFinanciamento = (TextView) view.findViewById(R.id.card_prazo_financiamento);
             foto = (ImageView) view.findViewById(R.id.card_foto);
         }
     }
@@ -60,11 +60,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         Imovel imovel = imoveis.get(position);
         holder.nome.setText(imovel.getNome());
-        holder.valor.setText(String.format("%.2f", imovel.getValor()));
-        holder.endereco.setText(imovel.getEndereco());
-        holder.numeroQuartos.setText(String.format("%d", imovel.getNumeroQuartos()));
-        holder.dataEntrega.setText(imovel.getDataEntrega());
-        holder.prazoFinanciamento.setText(imovel.getPrazoFinanciamento());
+        holder.valor.setText("R$" + Integer.toString(imovel.getValor()));
+//        holder.endereco.setText(imovel.getEndereco());
+//        holder.numeroQuartos.setText(Integer.toString(imovel.getNumeroQuartos()));
+//        holder.dataEntrega.setText(imovel.getDataEntrega());
+//        holder.prazoFinanciamento.setText(Integer.toString(imovel.getPrazoFinanciamento()));
         Glide.with(mContext).load(imovel.getFotoPath()).into(holder.foto);
     }
 

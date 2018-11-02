@@ -7,20 +7,20 @@ package com.example.thiagobrezinski.appobiliaria;
 public class Imovel {
 
     private String nome;
-    private float valor;
+    private int valor;
     private String endereco;
     private int numeroQuartos;
     private String dataEntrega;
     private int prazoFinanciamento;
-    private String fotoPath;
+    private int fotoPath;
 
     public Imovel(String nome,
-                  float valor,
+                  int valor,
                   String endereco,
                   int numeroQuartos,
                   String dataEntrega,
                   int prazoFinanciamento,
-                  String fotoPath
+                  int fotoPath
     ) {
         this.nome = nome;
         this.valor = valor;
@@ -39,11 +39,11 @@ public class Imovel {
         this.nome = nome;
     }
 
-    public float getValor() {
+    public int getValor() {
         return valor;
     }
 
-    public void setValor(float valor) {
+    public void setValor(int valor) {
         this.valor = valor;
     }
 
@@ -79,11 +79,11 @@ public class Imovel {
         this.prazoFinanciamento = prazoFinanciamento;
     }
 
-    public String getFotoPath() {
+    public int getFotoPath() {
         return fotoPath;
     }
 
-    public void setFotoPath(String fotoPath) {
+    public void setFotoPath(int fotoPath) {
         this.fotoPath = fotoPath;
     }
 }
