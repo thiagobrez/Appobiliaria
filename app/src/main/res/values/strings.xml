@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Appobiliaria</string>
     <string name="title_news">Notícias</string>
-    <string name="title_catalog">Catálogo!</string>
+    <string name="title_catalog">Catálogo</string>
     <string name="title_map">Mapa</string>
     <string name="backdrop_title">Appobiliaria</string>
     <string name="backdrop_subtitle">Nossos empreendimentos</string>

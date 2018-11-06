@@ -1,5 +1,6 @@
 package com.example.thiagobrezinski.appobiliaria;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -7,8 +8,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
@@ -18,15 +17,16 @@ import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-
 import com.bumptech.glide.Glide;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
+    private RecyclerView recyclerView;
     private BottomNavigationView navigationView;
+    private CardAdapter adapter;
+    private List<Imovel> imoveis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,25 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         setSupportActionBar(toolbar);
 
         initCollapsingToolbar();
+
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+
+        imoveis = new ArrayList<>();
+        adapter = new CardAdapter(this, imoveis);
+
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(adapter);
+
+        prepararImoveis();
+
+        try {
+            Glide.with(this).load(R.drawable.imovel_1).into((ImageView) findViewById(R.id.backdrop));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -145,31 +164,24 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         switch (item.getItemId()) {
             case R.id.navigation_news: {
                 getSupportActionBar().setTitle(R.string.title_news);
-                Fragment newsFragment = NewsFragment.newInstance();
-                openFragment(newsFragment);
+                Intent intent = new Intent(this, NewsActivity.class);
+                startActivity(intent);
                 break;
             }
             case R.id.navigation_catalog: {
                 getSupportActionBar().setTitle(R.string.title_catalog);
-                Fragment catalogFragment = CatalogFragment.newInstance();
-                openFragment(catalogFragment);
+                Intent intent = new Intent(this, CatalogActivity.class);
+                startActivity(intent);
                 break;
             }
             case R.id.navigation_map: {
                 getSupportActionBar().setTitle(R.string.title_map);
-                Fragment mapFragment = MapFragment.newInstance();
-                openFragment(mapFragment);
+                Intent intent = new Intent(this, MapActivity.class);
+                startActivity(intent);
                 break;
             }
         }
         return true;
-    }
-
-    private void openFragment(Fragment fragment) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
     }
 
     /**
