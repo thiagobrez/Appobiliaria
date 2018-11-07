@@ -21,7 +21,7 @@ import java.util.List;
 public class CatalogFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private CardAdapter adapter;
+    private ImovelAdapter adapter;
     private List<Imovel> imoveis;
 
     @Override
@@ -34,10 +34,10 @@ public class CatalogFragment extends Fragment {
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         imoveis = new ArrayList<>();
-        adapter = new CardAdapter(getActivity(), imoveis);
+        adapter = new ImovelAdapter(getActivity(), imoveis);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new CatalogFragment.GridSpacingItemDecoration(2, dpToPx(10), true));
+//        recyclerView.addItemDecoration(new CatalogFragment.GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 

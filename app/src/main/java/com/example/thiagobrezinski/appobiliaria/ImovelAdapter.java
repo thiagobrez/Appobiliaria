@@ -14,7 +14,7 @@ import java.util.List;
  * Created by thiagobrezinski on 31/10/18.
  */
 
-public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> {
+public class ImovelAdapter extends RecyclerView.Adapter<ImovelAdapter.MyViewHolder> {
     private Context mContext;
     private List<Imovel> imoveis;
 
@@ -41,7 +41,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
         }
     }
 
-    public CardAdapter(Context mContext, List<Imovel> imoveis) {
+    public ImovelAdapter(Context mContext, List<Imovel> imoveis) {
         this.mContext = mContext;
         this.imoveis = imoveis;
     }
