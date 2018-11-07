@@ -1,10 +1,12 @@
 package com.example.thiagobrezinski.appobiliaria;
 
+import java.io.Serializable;
+
 /**
  * Created by thiagobrezinski on 31/10/18.
  */
 
-public class Imovel {
+public class Imovel implements Serializable {
 
     private String nome;
     private int valor;

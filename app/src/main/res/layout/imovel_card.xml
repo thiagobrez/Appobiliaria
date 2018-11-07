@@ -13,7 +13,6 @@
         android:layout_margin="@dimen/card_margin"
         android:elevation="3dp"
         android:clickable="true"
-        android:onClick="onImovelClick"
         card_view:cardCornerRadius="@dimen/card_album_radius">
 
         <RelativeLayout

@@ -1,6 +1,7 @@
 package com.example.thiagobrezinski.appobiliaria;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,7 +57,7 @@ public class ImovelAdapter extends RecyclerView.Adapter<ImovelAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        Imovel imovel = imoveis.get(position);
+        final Imovel imovel = imoveis.get(position);
         holder.nome.setText(imovel.getNome());
         holder.valor.setText("R$" + Integer.toString(imovel.getValor()));
 //        holder.endereco.setText(imovel.getEndereco());
@@ -64,6 +65,15 @@ public class ImovelAdapter extends RecyclerView.Adapter<ImovelAdapter.MyViewHold
 //        holder.dataEntrega.setText(imovel.getDataEntrega());
 //        holder.prazoFinanciamento.setText(Integer.toString(imovel.getPrazoFinanciamento()));
         Glide.with(mContext).load(imovel.getFotoPath()).into(holder.foto);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, DetailActivity.class);
+                intent.putExtra("imovel", imovel);
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override

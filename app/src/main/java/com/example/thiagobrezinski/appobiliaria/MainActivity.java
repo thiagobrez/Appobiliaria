@@ -43,10 +43,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
     }
 
-    public void onImovelClick(View view){
-        Intent intent = new Intent(this, DetailActivity.class);
-        startActivity(intent);
-    }
+//    public void onImovelClick(View view){
+//        Intent intent = new Intent(this, DetailActivity.class);
+////        intent.putExtra("imovel", )
+//        startActivity(intent);
+//    }
 
     /**
      * Initializing collapsing toolbar
