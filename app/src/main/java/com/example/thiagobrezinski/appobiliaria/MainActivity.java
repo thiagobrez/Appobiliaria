@@ -1,7 +1,5 @@
 package com.example.thiagobrezinski.appobiliaria;
 
-import android.content.res.Resources;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
@@ -10,19 +8,12 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.TypedValue;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
@@ -38,8 +29,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         initCollapsingToolbar();
+
+        navigationView.setSelectedItemId(R.id.navigation_catalog);
+        Fragment catalogFragment = CatalogFragment.newInstance();
+        openFragment(catalogFragment);
+
+        try {
+            Glide.with(this).load(R.drawable.imovel_1).into((ImageView) findViewById(R.id.backdrop));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -74,91 +74,21 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         });
     }
 
-    /**
-     * Adding few albums for testing
-     */
-    private void prepararImoveis() {
-        int[] fotos = new int[] {
-                R.drawable.imovel_1,
-        };
-
-        Imovel imovel = new Imovel(
-                "Res. Tarumã",
-                200000,
-                "Rua José Bonifácio",
-                3,
-                "01/01/2020",
-                12,
-                fotos[0]
-        );
-        imoveis.add(imovel);
-
-        imovel = new Imovel(
-                "Res. João de Barro",
-                500000,
-                "Rua João de Barro",
-                5,
-                "05/05/2021",
-                20,
-                fotos[0]
-        );
-        imoveis.add(imovel);
-
-        imovel = new Imovel(
-                "Res. Mário Quintana",
-                375000,
-                "Rua Mario Quintana",
-                4,
-                "25/12/2019",
-                24,
-                fotos[0]
-        );
-        imoveis.add(imovel);
-
-        imovel = new Imovel(
-                "Casa de frente para o mar",
-                450000,
-                "Avenida Beira Mar",
-                2,
-                "01/01/2018",
-                18,
-                fotos[0]
-        );
-        imoveis.add(imovel);
-
-        imovel = new Imovel(
-                "Casa rústica",
-                225000,
-                "Avenida Campo Largo",
-                2,
-                "01/01/2018",
-                18,
-                fotos[0]
-        );
-        imoveis.add(imovel);
-
-        adapter.notifyDataSetChanged();
-    }
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        TextView backdropSubtitle = (TextView) findViewById(R.id.backdrop_subtitle);
+
         switch (item.getItemId()) {
             case R.id.navigation_news: {
-                getSupportActionBar().setTitle(R.string.title_news);
+                backdropSubtitle.setText(R.string.title_news);
                 Fragment newsFragment = NewsFragment.newInstance();
                 openFragment(newsFragment);
                 break;
             }
             case R.id.navigation_catalog: {
-                getSupportActionBar().setTitle(R.string.title_catalog);
+                backdropSubtitle.setText(R.string.title_catalog);
                 Fragment catalogFragment = CatalogFragment.newInstance();
                 openFragment(catalogFragment);
-                break;
-            }
-            case R.id.navigation_map: {
-                getSupportActionBar().setTitle(R.string.title_map);
-                Fragment mapFragment = MapFragment.newInstance();
-                openFragment(mapFragment);
                 break;
             }
         }
@@ -170,51 +100,5 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         transaction.replace(R.id.frame, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
-    }
-
-    /**
-     * RecyclerView item decoration - give equal margin around grid item
-     */
-    public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
-
-        private int spanCount;
-        private int spacing;
-        private boolean includeEdge;
-
-        public GridSpacingItemDecoration(int spanCount, int spacing, boolean includeEdge) {
-            this.spanCount = spanCount;
-            this.spacing = spacing;
-            this.includeEdge = includeEdge;
-        }
-
-        @Override
-        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-            int position = parent.getChildAdapterPosition(view); // item position
-            int column = position % spanCount; // item column
-
-            if (includeEdge) {
-                outRect.left = spacing - column * spacing / spanCount; // spacing - column * ((1f / spanCount) * spacing)
-                outRect.right = (column + 1) * spacing / spanCount; // (column + 1) * ((1f / spanCount) * spacing)
-
-                if (position < spanCount) { // top edge
-                    outRect.top = spacing;
-                }
-                outRect.bottom = spacing; // item bottom
-            } else {
-                outRect.left = column * spacing / spanCount; // column * ((1f / spanCount) * spacing)
-                outRect.right = spacing - (column + 1) * spacing / spanCount; // spacing - (column + 1) * ((1f /    spanCount) * spacing)
-                if (position >= spanCount) {
-                    outRect.top = spacing; // item top
-                }
-            }
-        }
-    }
-
-    /**
-     * Converting dp to pixel
-     */
-    private int dpToPx(int dp) {
-        Resources r = getResources();
-        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
 }
