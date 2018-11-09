@@ -65,15 +65,6 @@ public class ImovelAdapter extends RecyclerView.Adapter<ImovelAdapter.MyViewHold
 //        holder.dataEntrega.setText(imovel.getDataEntrega());
 //        holder.prazoFinanciamento.setText(Integer.toString(imovel.getPrazoFinanciamento()));
         Glide.with(mContext).load(imovel.getFotoPath()).into(holder.foto);
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(mContext, DetailActivity.class);
-                intent.putExtra("imovel", imovel);
-                mContext.startActivity(intent);
-            }
-        });
     }
 
     @Override

@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 public class Imovel implements Serializable {
 
+    private int id;
     private String nome;
     private int valor;
     private String endereco;
@@ -16,7 +17,8 @@ public class Imovel implements Serializable {
     private int prazoFinanciamento;
     private int fotoPath;
 
-    public Imovel(String nome,
+    public Imovel(int id,
+                  String nome,
                   int valor,
                   String endereco,
                   int numeroQuartos,
@@ -24,6 +26,7 @@ public class Imovel implements Serializable {
                   int prazoFinanciamento,
                   int fotoPath
     ) {
+        this.id = id;
         this.nome = nome;
         this.valor = valor;
         this.endereco = endereco;
@@ -31,6 +34,14 @@ public class Imovel implements Serializable {
         this.dataEntrega = dataEntrega;
         this.prazoFinanciamento = prazoFinanciamento;
         this.fotoPath = fotoPath;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
