@@ -1,5 +1,6 @@
 package com.example.thiagobrezinski.appobiliaria;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +25,7 @@ public class CatalogFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private ImovelAdapter adapter;
+    private ImovelAdapter2 adapter2;
     private List<Imovel> imoveis;
 
     @Override
@@ -34,18 +38,36 @@ public class CatalogFragment extends Fragment {
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         imoveis = new ArrayList<>();
-        adapter = new ImovelAdapter(getActivity(), imoveis);
+//        adapter = new ImovelAdapter(getActivity(), imoveis);
+
+//        RecyclerViewClickListener listener = (view, position) -> {
+//            Toast.makeText(getContext(), "Position " + position, Toast.LENGTH_SHORT).show();
+//
+//            System.out.println("coco");
+//            Intent intent = new Intent(getActivity(), DetailActivity.class);
+//            intent.putExtra("imovel", imoveis.get(position));
+//            startActivity(intent);
+//        };
+
+        RecyclerViewClickListener listener = new RecyclerViewClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Toast.makeText(getContext(), "Position " + position, Toast.LENGTH_SHORT).show();
+                System.out.println("coco");
+                Intent intent = new Intent(getActivity(), DetailActivity.class);
+                intent.putExtra("imovel", imoveis.get(position));
+                startActivity(intent);
+            }
+        };
+
+        adapter2 = new ImovelAdapter2(getActivity(), listener, imoveis);
+
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new CatalogFragment.GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-//        RecyclerViewClickListener listener = (view, position) -> {
-//            Toast.makeText(getContext(), "Position " + position, Toast.LENGTH_SHORT).show();
-//        };
-//        RecyclerViewAdapter adapter = new RecyclerViewAdapter(listener);
-
-        recyclerView.setAdapter(adapter);
+//        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter2);
 
         prepararImoveis();
 
@@ -120,7 +142,7 @@ public class CatalogFragment extends Fragment {
         );
         imoveis.add(imovel);
 
-        adapter.notifyDataSetChanged();
+        adapter2.notifyDataSetChanged();
     }
 
 
