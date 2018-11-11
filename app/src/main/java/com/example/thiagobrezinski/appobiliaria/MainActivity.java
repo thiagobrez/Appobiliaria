@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, RecyclerViewClickListener{
 
     private BottomNavigationView navigationView;
 
@@ -48,6 +48,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 ////        intent.putExtra("imovel", )
 //        startActivity(intent);
 //    }
+
+    @Override
+    public void onClick(View view, int position) {
+//        final Imovel imovel = imoveis.get(position);
+        Intent i = new Intent(this, DetailActivity.class);
+        startActivity(i);
+    }
 
     /**
      * Initializing collapsing toolbar

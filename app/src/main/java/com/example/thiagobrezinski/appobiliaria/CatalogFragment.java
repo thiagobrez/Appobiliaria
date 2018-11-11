@@ -8,12 +8,11 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,11 +20,11 @@ import java.util.List;
  * Created by thiagobrezinski on 05/11/18.
  */
 
+//public class CatalogFragment extends Fragment implements RecyclerViewClickListener {
 public class CatalogFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private ImovelAdapter adapter;
-    private ImovelAdapter2 adapter2;
     private List<Imovel> imoveis;
 
     @Override
@@ -38,41 +37,26 @@ public class CatalogFragment extends Fragment {
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         imoveis = new ArrayList<>();
-//        adapter = new ImovelAdapter(getActivity(), imoveis);
-
-//        RecyclerViewClickListener listener = (view, position) -> {
-//            Toast.makeText(getContext(), "Position " + position, Toast.LENGTH_SHORT).show();
-//
-//            System.out.println("coco");
-//            Intent intent = new Intent(getActivity(), DetailActivity.class);
-//            intent.putExtra("imovel", imoveis.get(position));
-//            startActivity(intent);
-//        };
-
-        RecyclerViewClickListener listener = new RecyclerViewClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                Toast.makeText(getContext(), "Position " + position, Toast.LENGTH_SHORT).show();
-                System.out.println("coco");
-                Intent intent = new Intent(getActivity(), DetailActivity.class);
-                intent.putExtra("imovel", imoveis.get(position));
-                startActivity(intent);
-            }
-        };
-
-        adapter2 = new ImovelAdapter2(getActivity(), listener, imoveis);
-
+        adapter = new ImovelAdapter(getContext(), imoveis);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new CatalogFragment.GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-//        recyclerView.setAdapter(adapter);
-        recyclerView.setAdapter(adapter2);
+//        adapter.setListener(this);
+        recyclerView.setAdapter(adapter);
 
         prepararImoveis();
 
         return rootView;
     }
+
+//    @Override
+//    public void onClick(View view, int position) {
+//        Log.v("Click", "Click");
+//        final Imovel imovel = imoveis.get(position);
+//        Intent i = new Intent(getActivity(), DetailActivity.class);
+//        startActivity(i);
+//    }
 
     /**
      * Adiciona imoveis para teste.
@@ -142,7 +126,7 @@ public class CatalogFragment extends Fragment {
         );
         imoveis.add(imovel);
 
-        adapter2.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();
     }
 
 
