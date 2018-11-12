@@ -1,11 +1,12 @@
 package com.example.thiagobrezinski.appobiliaria;
 
+import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
+import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 public class DetailActivity extends AppCompatActivity {
@@ -21,14 +22,20 @@ public class DetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         initCollapsingToolbar();
 
+        this.imovel = (Imovel) getIntent().getSerializableExtra("imovel");
+
+        ((TextView) findViewById(R.id.detail_nome)).setText(imovel.getNome());
+        ((TextView) findViewById(R.id.detail_valor)).setText(String.valueOf(imovel.getValor()));
+        ((TextView) findViewById(R.id.detail_endereco)).setText(imovel.getEndereco());
+        ((TextView) findViewById(R.id.detail_numero_quartos)).setText(String.valueOf(imovel.getNumeroQuartos()));
+        ((TextView) findViewById(R.id.detail_data_entrega)).setText(imovel.getDataEntrega());
+        ((TextView) findViewById(R.id.detail_prazo_financiamento)).setText(String.valueOf(imovel.getPrazoFinanciamento()));
+
         try {
-            Glide.with(this).load(R.drawable.imovel_1).into((ImageView) findViewById(R.id.backdrop));
+            Glide.with(this).load(this.imovel.getFotoPath()).into((ImageView) findViewById(R.id.backdrop));
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        this.imovel = (Imovel) getIntent().getSerializableExtra("imovel");
-
     }
 
     /**

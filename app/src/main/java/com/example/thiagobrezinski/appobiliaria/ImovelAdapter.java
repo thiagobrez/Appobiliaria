@@ -1,6 +1,7 @@
 package com.example.thiagobrezinski.appobiliaria;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,15 +31,14 @@ public class ImovelAdapter extends RecyclerView.Adapter<ImovelAdapter.MyViewHold
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.imovel_card, parent, false);
-        MyViewHolder holder = new MyViewHolder(view);
+        final MyViewHolder holder = new MyViewHolder(view);
 
         holder.cardViewItem.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
-                Log.v("OOISDOISDAJOISD", "OASHDOUASDHOUASHDOUASH");
-
-                Toast.makeText(context, "Oi", Toast.LENGTH_SHORT).show();
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DetailActivity.class);
+                intent.putExtra("imovel", imoveis.get(holder.getAdapterPosition()));
+                context.startActivity(intent);
             }
         });
 
@@ -66,6 +66,7 @@ public class ImovelAdapter extends RecyclerView.Adapter<ImovelAdapter.MyViewHold
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         private LinearLayout cardViewItem;
+        private ImageView foto;
         private TextView
                 nome,
                 valor,
@@ -73,7 +74,6 @@ public class ImovelAdapter extends RecyclerView.Adapter<ImovelAdapter.MyViewHold
                 numeroQuartos,
                 dataEntrega,
                 prazoFinanciamento;
-        public ImageView foto;
 
         MyViewHolder(View view) {
             super(view);

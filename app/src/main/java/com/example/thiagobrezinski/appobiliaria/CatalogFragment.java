@@ -1,6 +1,5 @@
 package com.example.thiagobrezinski.appobiliaria;
 
-import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -8,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +18,6 @@ import java.util.List;
  * Created by thiagobrezinski on 05/11/18.
  */
 
-//public class CatalogFragment extends Fragment implements RecyclerViewClickListener {
 public class CatalogFragment extends Fragment {
 
     private RecyclerView recyclerView;
@@ -42,21 +39,12 @@ public class CatalogFragment extends Fragment {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new CatalogFragment.GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-//        adapter.setListener(this);
         recyclerView.setAdapter(adapter);
 
         prepararImoveis();
 
         return rootView;
     }
-
-//    @Override
-//    public void onClick(View view, int position) {
-//        Log.v("Click", "Click");
-//        final Imovel imovel = imoveis.get(position);
-//        Intent i = new Intent(getActivity(), DetailActivity.class);
-//        startActivity(i);
-//    }
 
     /**
      * Adiciona imoveis para teste.

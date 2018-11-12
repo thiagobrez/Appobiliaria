@@ -1,6 +1,5 @@
 package com.example.thiagobrezinski.appobiliaria;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
@@ -11,12 +10,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, RecyclerViewClickListener{
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     private BottomNavigationView navigationView;
 
@@ -41,19 +39,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-//    public void onImovelClick(View view){
-//        Intent intent = new Intent(this, DetailActivity.class);
-////        intent.putExtra("imovel", )
-//        startActivity(intent);
-//    }
-
-    @Override
-    public void onClick(View view, int position) {
-//        final Imovel imovel = imoveis.get(position);
-        Intent i = new Intent(this, DetailActivity.class);
-        startActivity(i);
     }
 
     /**
