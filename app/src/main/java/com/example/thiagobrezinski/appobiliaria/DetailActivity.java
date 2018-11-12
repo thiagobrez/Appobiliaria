@@ -24,12 +24,12 @@ public class DetailActivity extends AppCompatActivity {
 
         this.imovel = (Imovel) getIntent().getSerializableExtra("imovel");
 
-        ((TextView) findViewById(R.id.detail_nome)).setText(imovel.getNome());
-        ((TextView) findViewById(R.id.detail_valor)).setText(String.valueOf(imovel.getValor()));
-        ((TextView) findViewById(R.id.detail_endereco)).setText(imovel.getEndereco());
-        ((TextView) findViewById(R.id.detail_numero_quartos)).setText(String.valueOf(imovel.getNumeroQuartos()));
-        ((TextView) findViewById(R.id.detail_data_entrega)).setText(imovel.getDataEntrega());
-        ((TextView) findViewById(R.id.detail_prazo_financiamento)).setText(String.valueOf(imovel.getPrazoFinanciamento()));
+        ((TextView) findViewById(R.id.backdrop_title)).setText(imovel.getNome());
+        ((TextView) findViewById(R.id.detail_valor)).setText("Preço: R$" + String.valueOf(imovel.getValor()));
+        ((TextView) findViewById(R.id.detail_endereco)).setText("Endereço: " + imovel.getEndereco());
+        ((TextView) findViewById(R.id.detail_numero_quartos)).setText("Número de quartos: " + String.valueOf(imovel.getNumeroQuartos()));
+        ((TextView) findViewById(R.id.detail_data_entrega)).setText("Data de entrega: " + imovel.getDataEntrega());
+        ((TextView) findViewById(R.id.detail_prazo_financiamento)).setText("Prazo de financiamento: " + String.valueOf(imovel.getPrazoFinanciamento()) + " meses");
 
         try {
             Glide.with(this).load(this.imovel.getFotoPath()).into((ImageView) findViewById(R.id.backdrop));
