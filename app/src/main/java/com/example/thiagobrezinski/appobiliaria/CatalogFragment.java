@@ -59,11 +59,11 @@ public class CatalogFragment extends Fragment {
     private void prepararImoveis(JSONArray jsonImoveis) throws JSONException {
         int[] fotos = new int[] {
                 R.drawable.imovel_1,
-//                R.drawable.imovel_2,
-//                R.drawable.imovel_3,
-//                R.drawable.imovel_4,
-//                R.drawable.imovel_5,
-//                R.drawable.imovel_6,
+                R.drawable.imovel_2,
+                R.drawable.imovel_3,
+                R.drawable.imovel_4,
+                R.drawable.imovel_5,
+                R.drawable.imovel_6,
         };
 
         for (int i = 0; i < jsonImoveis.length(); i++) {
@@ -76,7 +76,7 @@ public class CatalogFragment extends Fragment {
                json.getInt("numeroQuartos"),
                json.getString("dataEntrega"),
                json.getInt("prazoFinanciamento"),
-               fotos[0]
+               fotos[i]
             ));
         }
 
