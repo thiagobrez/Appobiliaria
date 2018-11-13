@@ -16,6 +16,9 @@ public class Imovel implements Serializable {
     private String dataEntrega;
     private int prazoFinanciamento;
     private int fotoPath;
+    private String lat;
+    private String lng;
+    private String videoURL;
 
     public Imovel(int id,
                   String nome,
@@ -24,7 +27,10 @@ public class Imovel implements Serializable {
                   int numeroQuartos,
                   String dataEntrega,
                   int prazoFinanciamento,
-                  int fotoPath
+                  int fotoPath,
+                  String lat,
+                  String lng,
+                  String videoURL
     ) {
         this.id = id;
         this.nome = nome;
@@ -34,6 +40,10 @@ public class Imovel implements Serializable {
         this.dataEntrega = dataEntrega;
         this.prazoFinanciamento = prazoFinanciamento;
         this.fotoPath = fotoPath;
+        this.lat = lat;
+        this.lng = lng;
+        this.videoURL = videoURL;
+
     }
 
     public int getId() {
@@ -98,5 +108,29 @@ public class Imovel implements Serializable {
 
     public void setFotoPath(int fotoPath) {
         this.fotoPath = fotoPath;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLng() {
+        return lng;
+    }
+
+    public void setLng(String lng) {
+        this.lng = lng;
+    }
+
+    public String getVideoURL() {
+        return videoURL;
+    }
+
+    public void setVideoURL(String videoURL) {
+        this.videoURL = videoURL;
     }
 }

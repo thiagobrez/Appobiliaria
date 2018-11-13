@@ -69,14 +69,17 @@ public class CatalogFragment extends Fragment {
         for (int i = 0; i < jsonImoveis.length(); i++) {
             JSONObject json = jsonImoveis.getJSONObject(i);
             this.imoveis.add(new Imovel(
-               json.getInt("id"),
-               json.getString("nome"),
-               json.getInt("valor"),
-               json.getString("endereco"),
-               json.getInt("numeroQuartos"),
-               json.getString("dataEntrega"),
-               json.getInt("prazoFinanciamento"),
-               fotos[i]
+                    json.getInt("id"),
+                    json.getString("nome"),
+                    json.getInt("valor"),
+                    json.getString("endereco"),
+                    json.getInt("numeroQuartos"),
+                    json.getString("dataEntrega"),
+                    json.getInt("prazoFinanciamento"),
+                    fotos[i],
+                    json.getString("lat"),
+                    json.getString("lng"),
+                    json.getString("videoURL")
             ));
         }
 

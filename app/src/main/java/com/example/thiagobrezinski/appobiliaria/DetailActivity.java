@@ -55,6 +55,7 @@ public class DetailActivity extends AppCompatActivity {
         mapButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(context, MapsActivity.class);
+                intent.putExtra("imovel", imovel);
                 startActivity(intent);
             }
         });
@@ -63,7 +64,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     /**
-     * initialize youtube player via Fragment and get instance of YoutubePlayer
+     * Inicializa player do YouTube em um fragmento.
      */
     private void initializeYoutubePlayer() {
 
@@ -81,7 +82,7 @@ public class DetailActivity extends AppCompatActivity {
                 if (!wasRestored) {
                     youTubePlayer = player;
                     youTubePlayer.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
-                    youTubePlayer.cueVideo("lLQRd4f3sks");
+                    youTubePlayer.cueVideo(imovel.getVideoURL());
                 }
             }
 
@@ -92,6 +93,9 @@ public class DetailActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Inicializa a toolbar expandível
+     */
     private void initCollapsingToolbar(Imovel imovel) {
         final CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle(" ");

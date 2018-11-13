@@ -78,6 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:layout_margin="20dp"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -86,36 +87,38 @@
                 android:id="@+id/detail_valor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/detail_item"/>
+                android:textSize="@dimen/detail_item" />
 
             <TextView
                 android:id="@+id/detail_endereco"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/detail_item"/>
+                android:textSize="@dimen/detail_item" />
 
             <TextView
                 android:id="@+id/detail_numero_quartos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/detail_item"/>
+                android:textSize="@dimen/detail_item" />
 
             <TextView
                 android:id="@+id/detail_data_entrega"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/detail_item"/>
+                android:textSize="@dimen/detail_item" />
 
             <TextView
                 android:id="@+id/detail_prazo_financiamento"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/detail_item"/>
+                android:textSize="@dimen/detail_item" />
 
             <Button
                 android:id="@+id/map_button"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
                 android:text="Ver mapa" />
 
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -123,9 +126,9 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/detail_prazo_financiamento"
                 android:background="@color/viewBg"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                android:layout_below="@+id/detail_prazo_financiamento"
                 tools:context="com.example.thiagobrezinski.appobiliaria.DetailActivity"
                 tools:showIn="@layout/activity_detail">
 
@@ -133,7 +136,8 @@
                     android:id="@+id/youtube_player_fragment"
                     android:name="com.google.android.youtube.player.YouTubePlayerSupportFragment"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp" />
 
             </RelativeLayout>
 
