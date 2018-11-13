@@ -11,6 +11,9 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,78 +44,41 @@ public class CatalogFragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
-        prepararImoveis();
+        try {
+            prepararImoveis(((MainActivity) getActivity()).getJsonImoveis());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         return rootView;
     }
 
     /**
-     * Adiciona imoveis para teste.
+     * Formata os imoveis recebidos do servidor e adiciona na lista.
      */
-    private void prepararImoveis() {
+    private void prepararImoveis(JSONArray jsonImoveis) throws JSONException {
         int[] fotos = new int[] {
                 R.drawable.imovel_1,
+//                R.drawable.imovel_2,
+//                R.drawable.imovel_3,
+//                R.drawable.imovel_4,
+//                R.drawable.imovel_5,
+//                R.drawable.imovel_6,
         };
 
-        Imovel imovel = new Imovel(
-                1,
-                "Res. Tarumã",
-                200000,
-                "Rua José Bonifácio",
-                3,
-                "01/01/2020",
-                12,
-                fotos[0]
-        );
-        imoveis.add(imovel);
-
-        imovel = new Imovel(
-                2,
-                "Res. João de Barro",
-                500000,
-                "Rua João de Barro",
-                5,
-                "05/05/2021",
-                20,
-                fotos[0]
-        );
-        imoveis.add(imovel);
-
-        imovel = new Imovel(
-                3,
-                "Res. Mário Quintana",
-                375000,
-                "Rua Mario Quintana",
-                4,
-                "25/12/2019",
-                24,
-                fotos[0]
-        );
-        imoveis.add(imovel);
-
-        imovel = new Imovel(
-                4,
-                "Casa de frente para o mar",
-                450000,
-                "Avenida Beira Mar",
-                2,
-                "01/01/2018",
-                18,
-                fotos[0]
-        );
-        imoveis.add(imovel);
-
-        imovel = new Imovel(
-                5,
-                "Casa rústica",
-                225000,
-                "Avenida Campo Largo",
-                2,
-                "01/01/2018",
-                18,
-                fotos[0]
-        );
-        imoveis.add(imovel);
+        for (int i = 0; i < jsonImoveis.length(); i++) {
+            JSONObject json = jsonImoveis.getJSONObject(i);
+            this.imoveis.add(new Imovel(
+               json.getInt("id"),
+               json.getString("nome"),
+               json.getInt("valor"),
+               json.getString("endereco"),
+               json.getInt("numeroQuartos"),
+               json.getString("dataEntrega"),
+               json.getInt("prazoFinanciamento"),
+               fotos[0]
+            ));
+        }
 
         adapter.notifyDataSetChanged();
     }

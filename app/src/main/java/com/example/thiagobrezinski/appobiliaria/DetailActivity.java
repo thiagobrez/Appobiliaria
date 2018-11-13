@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
@@ -20,12 +19,12 @@ import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 
 public class DetailActivity extends AppCompatActivity {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
     private static final String DEVELOPER_KEY = "AIzaSyC3N1Ah7JAMAZiIhoxN7CXKUgYcYd1mjEQ";
+    private static final String TAG = MainActivity.class.getSimpleName();
     private YouTubePlayerSupportFragment youTubePlayerFragment;
     private YouTubePlayer youTubePlayer;
-    private Imovel imovel;
     private Context context;
+    private Imovel imovel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +32,6 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         context = this;
-
         this.imovel = (Imovel) getIntent().getSerializableExtra("imovel");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -53,8 +51,8 @@ public class DetailActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        final Button button = findViewById(R.id.button_id);
-        button.setOnClickListener(new View.OnClickListener() {
+        final Button mapButton = findViewById(R.id.map_button);
+        mapButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(context, MapsActivity.class);
                 startActivity(intent);
@@ -82,19 +80,13 @@ public class DetailActivity extends AppCompatActivity {
                                                 boolean wasRestored) {
                 if (!wasRestored) {
                     youTubePlayer = player;
-
-                    //set the player style default
                     youTubePlayer.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
-
-                    //cue the 1st video by default
                     youTubePlayer.cueVideo("lLQRd4f3sks");
                 }
             }
 
             @Override
             public void onInitializationFailure(YouTubePlayer.Provider arg0, YouTubeInitializationResult arg1) {
-
-                //print or show error if initialization failed
                 Log.e(TAG, "Youtube Player View initialization failed");
             }
         });
@@ -106,7 +98,6 @@ public class DetailActivity extends AppCompatActivity {
         AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
         appBarLayout.setExpanded(true);
 
-        // hiding & showing the title when toolbar expanded & collapsed
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             boolean isShow = false;
             int scrollRange = -1;

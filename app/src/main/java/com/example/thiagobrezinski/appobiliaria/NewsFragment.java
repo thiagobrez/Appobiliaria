@@ -8,6 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,30 +40,34 @@ public class NewsFragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
-        prepararNoticias();
+        try {
+            prepararNoticias(((MainActivity) getActivity()).getJsonNoticias());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         return rootView;
     }
 
     /**
-     * Adiciona noticias para teste.
+     * Formata as noticias recebidas do servidor e adiciona na lista.
      */
-    private void prepararNoticias() {
-        Noticia noticia = new Noticia(
-                "Residencial Tarumã é lançado!",
-                "Venha conhecer nosso mais novo empreendimento."
-        );
-        noticias.add(noticia);
-
-        noticia = new Noticia(
-                "Residencial João de Barro sob avaliação do Corpo de Bombeiros",
-                "Estamos garantindo a segurança do seu novo lar."
-        );
-        noticias.add(noticia);
+    private void prepararNoticias(JSONArray jsonNoticias) throws JSONException {
+        for (int i = 0; i < jsonNoticias.length(); i++) {
+            JSONObject json = jsonNoticias.getJSONObject(i);
+            this.noticias.add(new Noticia(
+                    json.getInt("id"),
+                    json.getString("titulo"),
+                    json.getString("descricao")
+            ));
+        }
 
         adapter.notifyDataSetChanged();
     }
 
+    /**
+     * Retorna uma nova instância do fragmento.
+     */
     public static NewsFragment newInstance() {
         return new NewsFragment();
     }
