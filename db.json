@@ -1,0 +1,98 @@
+{
+  "imoveis": [
+    {
+      "id": 1,
+      "nome": "Res. Tarumã",
+      "valor": 200000,
+      "endereco": "Rua José Bonifácio",
+      "numeroQuartos": 3,
+      "dataEntrega": "25/12/2020",
+      "prazoFinanciamento": 12,
+      "lat": "-27.590616",
+      "lng": "-48.588413",
+      "videoURL": "lLQRd4f3sks"
+    },
+    {
+      "id": 2,
+      "nome": "Res. João de Barro",
+      "valor": 250000,
+      "endereco": "Rua João de Barro",
+      "numeroQuartos": 4,
+      "dataEntrega": "25/12/2020",
+      "prazoFinanciamento": 24,
+      "lat": "-27.434792",
+      "lng": "-48.464208",
+      "videoURL": "OIrWzOw70Y0"
+    },
+    {
+      "id": 3,
+      "nome": "Casa de frente para o mar",
+      "valor": 1000000,
+      "endereco": "Avenida Beira Mar Norte",
+      "numeroQuartos": 5,
+      "dataEntrega": "25/12/2020",
+      "prazoFinanciamento": 12,
+      "lat": "-27.605880",
+      "lng": "-48.531105",
+      "videoURL": "damUucIQpC4"
+    },
+    {
+      "id": 4,
+      "nome": "Casa rústica",
+      "valor": 200000,
+      "endereco": "Servidão do Alvoredo",
+      "numeroQuartos": 3,
+      "dataEntrega": "01/01/2019",
+      "prazoFinanciamento": 36,
+      "lat": "-27.606516",
+      "lng": "-48.527213",
+      "videoURL": "OjIDCI4neMY"
+    },
+    {
+      "id": 5,
+      "nome": "Kitnet para Estudantes",
+      "valor": 100000,
+      "endereco": "Av. Madre Benvenuta",
+      "numeroQuartos": 1,
+      "dataEntrega": "01/01/2012",
+      "prazoFinanciamento": 6,
+      "lat": "-27.606654",
+      "lng": "-48.547021",
+      "videoURL": "E8D1hRo1YL8"
+    },
+    {
+      "id": 6,
+      "nome": "Apartamento Luxuoso",
+      "valor": 5000000,
+      "endereco": "Rua Super Cara",
+      "numeroQuartos": 5,
+      "dataEntrega": "01/06/2022",
+      "prazoFinanciamento": 24,
+      "lat": "-27.578237",
+      "lng": "-48.543337",
+      "videoURL": "AWMzPbd0xP0"
+    }
+  ],
+  "noticias": [
+    {
+      "id": 1,
+      "titulo": "Res. Tarumã é inaugurado!",
+      "descricao": "Venha conferir mais um empreendimento da ImobiliApp!"
+    },
+    {
+      "id": 2,
+      "titulo": "Res. João de Barro sob vigilância do Corpo de Bombeiros",
+      "descricao": "Estamos garantindo maior segurança para você!"
+    },
+    {
+      "id": 3,
+      "titulo": "Casa rústica terá seu lançamento adiado em 1 mês",
+      "descricao": "Devido aos fatores climáticos, a obra atrasou"
+    },
+    {
+      "id": 4,
+      "titulo": "Apartamento Luxuoso é comprado por Ronaldinho Gaúcho",
+      "descricao": "O ilustre Bruxo desbancou Neymar e Cristiano Ronaldo"
+    }
+  ]
+}
