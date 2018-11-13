@@ -112,6 +112,31 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/detail_item"/>
 
+            <Button
+                android:id="@+id/button_id"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Ver mapa" />
+
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/viewBg"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:layout_below="@+id/detail_prazo_financiamento"
+                tools:context="com.example.thiagobrezinski.appobiliaria.DetailActivity"
+                tools:showIn="@layout/activity_detail">
+
+                <fragment
+                    android:id="@+id/youtube_player_fragment"
+                    android:name="com.google.android.youtube.player.YouTubePlayerSupportFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </RelativeLayout>
+
         </LinearLayout>
 
     </android.support.design.widget.CoordinatorLayout>
